@@ -49,3 +49,44 @@ grep uses basic regular expression(regex) {look extended regular expression too}
 **-E '([0-9]{3}\.){3}[0-9]{1,3}'** looks through ip address, checks that the first octet has 3 digits and the last octet has 1,2,3 digits 
     e.g *203.302.781.123*, *304.489.283.3*, *323.902.448.74*
 
+## nmap
+
+It's a network mapper.
+
+***nmap [options] [target]***
+
+**nmap [target]**, looks at 1000 famous ports and shows their state and guesses the service
+
+### states
+
+**open** - an app is actively listening
+**closed** - accessible, receives an responds to nmap packets but have no apps listening
+**un/filtered** -  nmap can't determine whether it's open or close, usually due to firewalls or router
+**open/closed|filtered** - can't tell if it's open/closed or filtered
+
+### targets
+
+Ip addresses normaly
+U can use **/** to specify a range. e.g **10.0.1.0/24**
+
+### options
+
+**-O** - used to check the OS
+**-A** - kinda wraps up the *-O*, Aggressive
+**-s** - scan type followed by uppercase *signifier*
+    #### signifiers
+    **L** - list
+    **n** - pings the ip address
+    **V** - looks at the version of the app running
+    **S** - stealth scan
+
+**-o** - output using signifiers
+    **N** - normal output
+    **X** - xml output
+    **S** - script kitty output
+
+**-p{port_num}** - scans specified ports
+    if **-** passed as arg, it searches *all* ports
+
+While nmap is running, check the command **"?"**
+
