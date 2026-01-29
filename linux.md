@@ -8,7 +8,7 @@ prints the line with the string
 **grep {string} {file}** 
 
 
-### flags/params/args
+### flags
 
 **-c** counts the number of times that the string occured
 
@@ -53,7 +53,7 @@ grep uses basic regular expression(regex) {look extended regular expression too}
 
 It's a network mapper.
 
-***nmap [options] [target]***
+***nmap [flags] [target]***
 
 **nmap [target]**, looks at 1000 famous ports and shows their state and guesses the service
 
@@ -69,7 +69,7 @@ It's a network mapper.
 Ip addresses normaly
 U can use **/** to specify a range. e.g **10.0.1.0/24**
 
-### options
+### flags
 
 **-O** - used to check the OS
 **-A** - kinda wraps up the *-O*, Aggressive
@@ -90,3 +90,19 @@ U can use **/** to specify a range. e.g **10.0.1.0/24**
 
 While nmap is running, check the command **"?"**
 
+## regex {Regular Expressions} 
+https://regexr.com/
+A sequence of symbols and characters expressing a string or pattern to be searched for within a longer piece of text.
+
+always defined with opening and closing **/**
+
+### flags
+**g** - global
+**i** - case insensitive
+/*I really need to come continue with this*/
+
+
+## dirb
+DIRB  IS  a Web Content Scanner. It looks for existing (and/or hidden) Web Objects. It basically works by launching a dictionary basesd attack against a web server and analizing the response.
+
+**It is quite interesting look it up**

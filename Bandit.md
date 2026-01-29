@@ -42,17 +42,17 @@ Otherwise your command will wait for input from U.
 ## LEVEL 6
 
 **find <where> <what>**- can take arguments that makes it very versatile tool e.g
-**-type** - where it takes the params "f" for files and "d" for dirs
+*-type* - where it takes the params "f" for files and "d" for dirs
 
-**-name** - takes the name as params, use *.<filetype> for wildcards.
+*-name* - takes the name as params, use *.<filetype> for wildcards.
 
-**-iname** - case-insensitive type of *-name*
+*-iname* - case-insensitive type of *-name*
 
-**-size** - +10M(10MB or larger), -1K(smaller than 1kb) G, M, K
+*-size* - +10M(10MB or larger), -1K(smaller than 1kb) G, M, K
 
-**-maxdepth** - search how deep in terms of levels i.e 1 for in this dir only
+*-maxdepth* - search how deep in terms of levels i.e 1 for in this dir only
 
-**-exec** - is the execute argument takes "{}" as the placeholder for the files found, and when done with the command U want executed for the file postpend it with "\;" e.g
+*-exec* - is the execute argument takes "{}" as the placeholder for the files found, and when done with the command U want executed for the file postpend it with "\;" e.g
     find . -name "*.log" -exec rm {} \; # deletes all .log files in the current dir
 
 ## LEVEL 7
