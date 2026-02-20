@@ -1,0 +1,54 @@
+# enable colors on the exit status'
+autoload -U colors && colors
+
+# Function to translate exit codes to human-readable messages
+exit_description() {
+  local code=$1
+  case $code in
+    0) echo "Success" ;;
+    1) echo "General error - this is a catch-all for app errors(syntax or failed tests)." ;;
+    2) echo "Misuse of shell built-ins - invalid options, command line args." ;;
+    3) echo "Licensing issues - I wish U the very best in whatever entanglements these are, broski!" ;;
+    64) echo "Command-line usage error - this is a bit guessier than other error msgs." ;;
+    66) echo "No input (unreadable/missing file) - this is a bit guessier than other error msgs." ;;
+    73) echo "Cannot create output file - this is a bit guessier than other error msgs." ;;
+    75) echo " Temporary failure i.e network error - this is a bit guessish than other error msgs." ;;
+    125) echo "Docker/Command Error - failed to run container(check flags or permissions)." ;;
+    126) echo "Command invoked cannot execute - permision denied or file not binary." ;;
+    127) echo -e "Command not found - typo in command / missing dependency / PATH incorrect." ;;
+    128) echo "Invalid argument to exit - invalid argument to exit." ;;
+    130) echo "Script terminated (SIGINT) - user killed process with Ctrl+C." ;;
+    137) echo "Killed (SIGKILL) - process force-killed, prolly by Out-of-Memory(OOM) killer." ;;
+    139) echo "Segmentation fault (SIGSEGV) - Process tried to access invalid memory." ;;
+    143) echo "Graceful Termination (SIGTERM) - Process received a termination." ;;
+    255) echo "Out of Range / Unknown - Exit value was > 255 || -1, indicating an abnormal exit." ;;
+    *)
+      if (( 2 < code && code < 124 )); then
+        echo "Application-specific errors - these are defined by the program."       
+      elif (( code > 128 && code < 256 )); then
+        local sig=$((code - 128))
+        echo "Terminated by signal $sig"
+      else
+        echo "Unknown exit code: $code"
+      fi
+      ;;
+  esac
+}
+
+precmd() {
+  local code=$?
+  if [[ $code -ne 0 ]]; then
+    print -P "%F{red}✘ Exit $code: $(exit_description $code)%f"
+  else
+    # Optional: show success in green
+    # print -P "%F{green}✔ Exit $code: $(exit_description $code)%f"
+    :
+  fi
+}
+
+# repo name links to actual repo .git, ensuring that U can place ur file anywhere and push it to the right dir
+linux() {
+  git --git-dir="$HOME/Documents/OverTheWire/.git" "$@"
+}
+
+
