@@ -15,6 +15,7 @@
 # There are some caveats.
 
 # It only works for adding commiting and pushing(far as I've tested)
+# It only adds a file if it's in the current dir.
 # DO NOT pull, as this will create a .git on your home dir
 # if U check status U might worry, as it checks the current-dir
 
