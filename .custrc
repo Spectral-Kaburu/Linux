@@ -15,8 +15,8 @@ exit_description() {
     75) echo " Temporary failure i.e network error - this is a bit guessish than other error msgs." ;;
     125) echo "Docker/Command Error - failed to run container(check flags or permissions)." ;;
     126) echo "Command invoked cannot execute - permision denied or file not binary." ;;
-    127) echo -e "Command not found - typo in command / missing dependency / PATH incorrect." ;;
-    128) echo "Invalid argument to exit - invalid argument to exit." ;;
+    127) echo "Command not found - typo in command / missing dependency / '$PATH' incorrect." ;;
+    128) echo "Invalid argument to exit - like a decimal maybe." ;;
     130) echo "Script terminated (SIGINT) - user killed process with Ctrl+C." ;;
     137) echo "Killed (SIGKILL) - process force-killed, prolly by Out-of-Memory(OOM) killer." ;;
     139) echo "Segmentation fault (SIGSEGV) - Process tried to access invalid memory." ;;
@@ -45,10 +45,3 @@ precmd() {
     :
   fi
 }
-
-# repo name links to actual repo .git, ensuring that U can place ur file anywhere and push it to the right dir
-linux() {
-  git --git-dir="$HOME/Documents/OverTheWire/.git" "$@"
-}
-
-
