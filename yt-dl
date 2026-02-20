@@ -1,0 +1,98 @@
+#!/bin/bash
+
+# ========== COLORS ==========
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[1;33m"
+BLUE="\033[0;34m"
+NC="\033[0m"
+
+# ========== DEFAULTS ==========
+START_INDEX=1
+AUDIO_ONLY=false
+OUTPUT_DIR=""
+URL=""
+
+# ========== FUNCTIONS ==========
+usage() {
+  echo -e "${YELLOW}Usage:${NC}"
+  echo -e "  ydl -u <vid_url> -o <output_dir> [options]"
+  echo ""
+  echo -e "${YELLOW}Options:${NC}"
+  echo "  -u    Playlist/Video URL"
+  echo "  -o    Output directory"
+  echo "  -s    Start index (default: 1)"
+  echo "  -a    Audio only (mp3)"
+  echo "  -h    Help"
+  echo ""
+  echo -e "${GREEN}This works for long, playlists and normal youtube videos, Just get the URL.${NC}"
+  exit 1
+}
+
+log() {
+  echo -e "${BLUE}[*]${NC} $1"
+}
+
+success() {
+  echo -e "${GREEN}[+]${NC} $1"
+}
+
+error() {
+  echo -e "${RED}[-]${NC} $1"
+}
+
+# ========== ARG PARSING ==========
+while getopts "u:o:s:ah" opt; do
+  case $opt in
+    u) URL="$OPTARG" ;;
+    o) OUTPUT_DIR="$OPTARG" ;;
+    s) START_INDEX="$OPTARG" ;;
+    a) AUDIO_ONLY=true ;;
+    h) usage ;;
+    *) usage ;;
+  esac
+done
+
+# ========== VALIDATION ==========
+if [[ -z "$URL" || -z "$OUTPUT_DIR" ]]; then
+  error "URL and output directory are required."
+  usage
+fi
+
+if ! command -v yt-dlp &> /dev/null; then
+  error "yt-dlp is not installed. Install with: pip install yt-dlp"
+  exit 1
+fi
+
+mkdir -p "$OUTPUT_DIR"
+
+# ========== BUILD COMMAND ==========
+CMD=(
+  yt-dlp
+  --yes-playlist
+  --playlist-start "$START_INDEX"
+  --download-archive "$OUTPUT_DIR/archive.txt"
+  --continue
+  -o "$OUTPUT_DIR/%(playlist_index)s - %(title)s.%(ext)s"
+)
+
+if $AUDIO_ONLY; then
+  CMD+=(-f bestaudio --extract-audio --audio-format mp3)
+else
+  CMD+=(-f "bv*+ba/b")
+fi
+
+CMD+=("$URL")
+
+# ========== RUN ==========
+log "Starting download..."
+log "Output directory: $OUTPUT_DIR"
+log "Starting at index: $START_INDEX"
+
+"${CMD[@]}"
+
+if [[ $? -eq 0 ]]; then
+  success "Download completed successfully."
+else
+  error "Download encountered an error."
+fi
