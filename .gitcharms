@@ -1,0 +1,21 @@
+# Ever wanted to have a file saved in another dir and still be connected
+# to your repo??
+
+# Welcome to my small implementation of my solution called git charms
+
+# A command(function && git alias), links to repo-dir .git, ensuring
+# that whatever arguments parsed work just like git in repo-dir
+
+# GIT_WORK_TREE - choose between, file(may have damning consequences)
+#		  and repo-dir(Recommended) location
+
+# I just found out U could tab git commands for completion!!
+# It's a must-have capability - see after func.
+
+linux() {
+  GIT_DIR="$HOME/Documents/Linux/.git" \
+  git "$@"
+}
+
+compdef linux=git
+
