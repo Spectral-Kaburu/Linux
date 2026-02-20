@@ -12,6 +12,12 @@
 # I just found out U could tab git commands for completion!!
 # It's a must-have capability - see after func.
 
+# There are some caveats.
+
+# It only works for adding commiting and pushing(far as I've tested)
+# DO NOT pull, as this will create a .git on your home dir
+# if U check status U might worry, as it checks the current-dir
+
 linux() {
   GIT_DIR="$HOME/Documents/Linux/.git" \
   git "$@"
