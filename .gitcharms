@@ -1,0 +1,5 @@
+# for my Linux repo
+linux() {
+  git --git-dir="$HOME/Documents/Linux/.git" "@"
+}
+

@@ -15,8 +15,8 @@ exit_description() {
     75) echo " Temporary failure i.e network error - this is a bit guessish than other error msgs." ;;
     125) echo "Docker/Command Error - failed to run container(check flags or permissions)." ;;
     126) echo "Command invoked cannot execute - permision denied or file not binary." ;;
-    127) echo "Command not found - typo in command / missing dependency / '$PATH' incorrect." ;;
-    128) echo "Invalid argument to exit - like a decimal maybe." ;;
+    127) echo -e "Command not found - typo in command / missing dependency / PATH incorrect." ;;
+    128) echo "Invalid argument to exit - invalid argument to exit." ;;
     130) echo "Script terminated (SIGINT) - user killed process with Ctrl+C." ;;
     137) echo "Killed (SIGKILL) - process force-killed, prolly by Out-of-Memory(OOM) killer." ;;
     139) echo "Segmentation fault (SIGSEGV) - Process tried to access invalid memory." ;;
@@ -45,3 +45,18 @@ precmd() {
     :
   fi
 }
+
+# Ever wanted to have a file saved in another dir and still be connected to your repo??
+# Welcome to my small implementation of my solution called git charms
+# A command links to repo-dir .git, ensuring that U can place ur file anywhere and push it to the right dir
+
+# I suggest changing the command based on the name of the repo
+# also, to keep it all clean, make another file for the git 'charms', I'll leave a sample func here
+# command() {
+#   git --git-dir="/path/to/repo-dir/.git" "$@"
+# }
+# so now U can just -$ command add file-in-another-dir && command commit -m "Commit message"
+# And it'll commit the added file!!! All that'll be left to do is $ command push
+
+# Since I'm using another file for these git 'charms' I'm going to source it
+source ~/.gitcharms
