@@ -16,5 +16,12 @@
 # For dirs
 # sudo mount --bind /path/to/scattered/dir/ /path/to/repo/dir/
 
+# Better yet;
 
-# set your mounts over in /etc/fstab - where mounts are usually
+# set your mounts over in /etc/fstab - Will handle mounting and 
+#                 and unmounting during login and logout.
+
+
+# <scattered-path> <repo-path> <type=none> <options=bind> <dump=0> <pass=0>
+
+# /scattered/path   /repo/path  none	    bind	   0	    0
