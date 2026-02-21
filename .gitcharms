@@ -2,7 +2,7 @@
 # 1) Ever wanted to have a file saved in another dir and still be connected
 #    to your repo?? (.gitalien)
 
-# source ~/.gitalien
+source ~/.gitalien
 
 # If you wondered hard enough, or explored problem (1) you would end up
 # at another problem;
@@ -10,7 +10,7 @@
 # 2) Can I blacklist some files to be tracked in a folder in github without
 #    necessarily having the file within the dir locally? (.gitpatch).
 
-source ~/.gitpatch
+# source ~/.gitpatch - visit it to see why
 
 # 3) I'm lazy, you probably are too, what if U could have your git commands 
 #    chaotically stacked? (.gitchaos)
@@ -19,30 +19,3 @@ source ~/.gitpatch
 
 
 ## Welcome to my small implementation of my solutions called gitcharms
-
-
-## gitalien solution:
-
-# A command(function && git alias), links to repo-dir .git, ensuring
-# that whatever arguments parsed work just like git in repo-dir
-
-# GIT_WORK_TREE - choose between, file(may have damning consequences)
-#		  and repo-dir(Recommended) location
-
-# I just found out U could tab git commands for completion!!
-# It's a must-have capability - see after func.
-
-# There are some caveats.
-
-# It only works for adding commiting and pushing(far as I've tested)
-# It only adds a file if it's in the current dir.
-# DO NOT pull, as this will create a .git on your home dir
-# if U check status U might worry, as it checks the current-dir
-
-linux() {
-  GIT_DIR="$HOME/Documents/Linux/.git" \
-  git "$@"
-}
-
-compdef linux=git
-
