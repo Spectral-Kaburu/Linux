@@ -1,0 +1,19 @@
+# New solution update! - We are going to bind mount our scattered files
+# Bind mounting will set an illusion of the scattered file on the repo
+# and will bind them too allowing for editting in both locales
+
+# If U bind your files U might as well work from your repo now, and
+# enjoy the structure.
+
+# I'll assume the target dir is already tracked by git
+#		sudo - required for mounting capabilities
+#		mount - the actual mount command
+#		--bind - UNIX style option for binding the files/dirs
+#		"path/to/scattered/file" - original location of file
+#		"path/to/repo/dir/file" - dir is where file is in repo
+# For files
+# sudo mount --bind /path/to/scattered/file /path/to/repo/dir/file
+# For dirs
+# sudo mount --bind /path/to/scattered/dir/ /path/to/repo/dir/
+sudo mount --bind "$HOME/.gitpatch" "$HOME/Documents/Linux/gitcharms/.gitpatch"
+sudo mount --bind "$HOME/.gitalien" "$HOME/Documents/Linux/gitcharms/.gitalien"
