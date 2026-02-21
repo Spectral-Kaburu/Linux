@@ -3,12 +3,21 @@
 # We are going to solve the problem by mapping specific files to their
 # git paths
 
+# New solution update! - We are going to bind mount our scattered files
+# Bind mounting will set an illusion of the scattered file on the repo
+# and will bind them too allowing for editting in both locales
+
+# I'll assume the target dir is already tracked by git
+# For files:
+sudo mount --bind "$HOME/.gitpatch" "$HOME/Documents/Linux/gitcharms/.gitpatch"
+
 # NOTE: Path MUST exist in git tree, if not;
-#		cd /$HOME/$REPO/ 
+#		cd /$HOME/$REPO/
 #       	mkdir -p gitcharms/
 #       	cd gitcharms/
 #       	touch .gitalien
-#       	git add .gitalien - MUST, because git can't track empty dirs
+#       	git add .gitalien - MUST, because git can't track empty
+#				     dirs
 #       	git commit -m "Initial commit"
 #		✔ Successfully added Path to git
 typeset -A FILE_PATHS=(
@@ -20,7 +29,7 @@ typeset -A FILE_PATHS=(
 # The function doing the magic of making sense of your cryptic command:)
 get_git_path() {
   local file=$1
-  
+
   if [[ -n "${FILE_PATHS[$file]}" ]]; then
     echo "${FILE_PATHS[$file]}"
   else
@@ -33,7 +42,7 @@ linux_add() {
   local file="$1"
   local target_path
   target_path=$(get_git_path "$file")
-  
+
   mkdir -p "$(dirname '$targetPath')"
 
   cp "$file" "$target_path"
