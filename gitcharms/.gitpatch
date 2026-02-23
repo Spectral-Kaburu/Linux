@@ -21,6 +21,7 @@
 # set your mounts over in /etc/fstab - Will handle mounting and 
 #                 and unmounting during login and logout.
 
+# Make sure U that the repo-path and subsequent files exist!
 
 # <scattered-path> <repo-path> <type=none> <options=bind> <dump=0> <pass=0>
 
