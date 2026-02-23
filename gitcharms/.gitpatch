@@ -25,3 +25,10 @@
 # <scattered-path> <repo-path> <type=none> <options=bind> <dump=0> <pass=0>
 
 # /scattered/path   /repo/path  none	    bind	   0	    0
+
+# slight CAVEAT!: If U run `lsblk` U will see the mounts, come to think
+# about it, U could use it to track your mounts, origins won't be shown
+
+
+# And now U have one file in 2 places, I guess the number could vary
+# depending on how crazy U are willling to go
