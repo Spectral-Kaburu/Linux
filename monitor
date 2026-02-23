@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Running airmon-ng check kill"
+sudo airmon-ng check kill
+
+echo "Starting wlan0mon"
+sudo airmon-ng start wlan0
+
+echo "We is in monitor mode!!!"
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "This script turns your wifi card back to managed mode from monitor mode"
+
+echo "Off from all the weird shit U are into already???!!"
+echo "Stopping wlan0mon"
+sudo airmon-ng stop wlan0mon
+
+echo "Starting NetworkManager"
+sudo systemctl start NetworkManager
+
