@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Check current state
+CURRENT_DELAY=$(gsettings get org.gnome.desktop.session idle-delay)
+
+if [ "$CURRENT_DELAY" != "uint32 0" ]; then
+    echo "Laptop is already in NORMAL mode"
+else
+    gsettings set org.gnome.desktop.session idle-delay 900
+    gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'suspend'
+    gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
+    echo "Normal sleep behavior restored"
+fi
