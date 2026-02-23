@@ -1,10 +1,11 @@
 #!/bin/bash
 
-echo "Running airmon-ng check kill"
-sudo airmon-ng check kill
+echo "This script turns your wifi card back to managed mode from monitor mode"
 
-echo "Starting wlan0mon"
-sudo airmon-ng start wlan0
+echo "Off from all the weird shit U are into already???!!"
+echo "Stopping wlan0mon"
+sudo airmon-ng stop wlan0mon
 
-echo "We is in monitor mode!!!"
+echo "Starting NetworkManager"
+sudo systemctl start NetworkManager
 
