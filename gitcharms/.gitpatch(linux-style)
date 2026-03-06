@@ -1,0 +1,37 @@
+# New solution update! - We are going to bind mount our scattered files
+# Bind mounting will set an illusion of the scattered file on the repo
+# and will bind them too allowing for editting in both locales
+
+# If U bind your files U might as well work from your repo now, and
+# enjoy the structure.
+
+# I'll assume the repo dir is already tracked by git
+#		sudo - required for mounting capabilities
+#		mount - the actual mount command
+#		--bind - UNIX style option for binding the files/dirs
+#		"path/to/scattered/file" - original location of file
+#		"path/to/repo/dir/file" - dir is where file is in repo
+# For files
+# sudo mount --bind /path/to/scattered/file /path/to/repo/dir/file
+# For dirs
+# sudo mount --bind /path/to/scattered/dir/ /path/to/repo/dir/
+
+# Better yet;
+
+# set your mounts over in /etc/fstab - Will handle mounting and 
+#                 and unmounting during login and logout.
+
+# Make sure that the repo-path and subsequent files exist!
+
+# <scattered-path> <repo-path> <type=none> <options=bind> <dump=0> <pass=0>
+
+# /scattered/path   /repo/path  none	    bind	   0	    0
+
+# slight CAVEAT!: If U run `lsblk` U will see the mounts, come to think
+# about it, U could use it to track your mounts, origins won't be shown
+
+
+# And now U have one file in 2 places, I guess the number could vary
+# depending on how crazy U are willling to go
+
+# Note be very careful about the naming!!
