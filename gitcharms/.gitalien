@@ -1,4 +1,4 @@
-# A command(function && git alias), links to repo-dir .git, ensuring
+# A command(function && git alias), links to repo dir .git, ensuring
 # that whatever arguments parsed work just like git in repo-dir
 
 # GIT_WORK_TREE - choose between, file(may have damning consequences)
@@ -11,8 +11,8 @@
 
 # It only works for adding commiting and pushing(far as I've tested)
 # It only adds a file if it's in the current dir.
-# DO NOT pull, as this will create a .git on your home dir
-# if U check status U might worry, as it checks the current-dir
+# DO NOT pull, as this will create a .git on your working dir
+# if U check status U might worry, as it checks the working dir
 
 linux() {
   GIT_DIR="$HOME/Documents/Linux/.git" \
